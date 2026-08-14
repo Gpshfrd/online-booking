@@ -1,58 +1,56 @@
 @use '../../styles/variables' as *;
 
 .confirmation {
-    max-width: 480px;
+    max-width: $container-max-width;
     margin: 0 auto;
-    padding: 2.5rem 2rem;
+    padding: $spacing-3xl $spacing-4xl;
     background: $background;
-    border-radius: 12px;
     text-align: center;
     animation: fadeIn 0.4s ease-out;
 }
 
 .title {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
     color: $primary;
-    margin-bottom: 0.5rem;
+    margin-bottom: $spacing-md;
 }
 
 .details {
     text-align: left;
     background: $background;
-    border-radius: 8px;
-    padding: 1.25rem;
-    margin-bottom: 1.5rem;
+    border-radius: $radius-sm;
+    margin-bottom: $spacing-3xl;
 }
 
 .detailRow {
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 0;
+    padding: $spacing-sm 0;
 }
 
 .detailLabel {
     color: $accent;
-    font-weight: 500;
+    font-weight: $font-weight-medium;
 }
 
 .detailValue {
     color: $primary;
-    font-weight: 500;
+    font-weight: $font-weight-medium;
 }
 
 .resetButton {
     width: 100%;
-    padding: 0.75rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
+    padding: $spacing-lg $spacing-4xl;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
     color: $primary;
     background: $background;
     border: 1px solid $primary;
-    border-radius: 8px;
+    border-radius: $radius-sm;
     cursor: pointer;
     transition: background 0.2s;
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: $font-family-base;
 
     &:hover {
         color: $background;
@@ -72,23 +70,19 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: $breakpoint-mobile) {
     .confirmation {
-        padding: 1.5rem 1.25rem;
-        margin: 0 0.75rem;
+        padding: $spacing-3xl $spacing-2xl;
+        margin: 0 $spacing-xl;
     }
 
     .title {
-        font-size: 1.25rem;
-    }
-
-    .details {
-        padding: 0.75rem;
+        font-size: $font-size-xl;
     }
 
     .detailRow {
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.25rem;
+        gap: $spacing-sm;
     }
 }

@@ -1,49 +1,48 @@
 @use '../../styles/variables' as *;
 
 .form {
-    margin: 0 auto;
     background: $background;
-    padding: 2rem;
+    padding: $spacing-4xl;
     width: 100%;
-    max-width: 480px;
+    max-width: $container-max-width;
     box-sizing: border-box;
 }
 
 .title {
-    font-size: 1.75rem;
-    font-weight: 600;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
     color: $primary;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: $spacing-4xl;
 }
 
 .fields {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem
+    gap: $spacing-2xl;
 }
 
 .fieldGroup {
     display: flex;
     flex-direction: column;
-    gap: 0.375rem;
+    gap: $spacing-sm;
     width: 100%;
-    max-width: 100%; 
+    max-width: 100%;
 }
 
 .submitButton {
     width: 100%;
-    padding: 0.75rem;
-    font-size: 1rem;
-    font-weight: 600;
+    padding: $spacing-lg;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
     color: $background;
     background: $accent;
     border: none;
-    border-radius: 8px;
+    border-radius: $radius-sm;
     cursor: pointer;
     transition: background 0.2s, opacity 0.2s;
-    font-family: system-ui, -apple-system, sans-serif;
-    margin-top: 1.5rem;
+    font-family: $font-family-base;
+    margin-top: $spacing-3xl;
 
     &:hover:not(:disabled) {
         background: $accent;
@@ -57,8 +56,8 @@
 
 .label {
     display: block;
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
     color: $primary;
 }
 
@@ -70,10 +69,10 @@
 .input {
     width: 100%;
     max-width: 100%;
-    padding: 0.625rem 0.875rem;
-    font-size: 1rem;
+    padding: $spacing-md $spacing-base;
+    font-size: $font-size-base;
     border: 1px solid $light;
-    border-radius: 8px;
+    border-radius: $radius-sm;
     transition: border-color 0.2s, box-shadow 0.2s;
     background: $background;
     color: $primary;
@@ -103,7 +102,7 @@
 .errorText {
     display: block;
     color: $error;
-    font-size: 0.813rem;
+    font-size: $font-size-xs;
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
@@ -112,13 +111,12 @@
     line-height: 1.4;
 }
 
-@media (max-width: 480px) {
+@media (max-width: $breakpoint-mobile) {
     .form {
-        padding: 1.25rem;
-        margin: 0 0.75rem;
+        padding: $spacing-2xl;
     }
 
     .title {
-        font-size: 1.5rem;
+        font-size: $font-size-xl;
     }
 }

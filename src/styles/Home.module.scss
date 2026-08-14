@@ -1,44 +1,45 @@
 @use './variables' as *;
 
 .container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: $background;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: $background;
 }
 
 .logo {
-  max-width: 1200px;
-  margin: 0 auto;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: $accent;
-  font-family: system-ui, -apple-system, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $accent;
+    font-family: $font-family-base;
 }
 
 .main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-4xl $spacing-xl;
 }
 
-@media (max-width: 480px) {
-  .header {
-    padding: 1rem;
-  }
+@media (max-width: $breakpoint-mobile) {
+    .header {
+        padding: $spacing-xl;
+    }
 
-  .logo {
-    font-size: 1.25rem;
-  }
+    .logo {
+        font-size: $font-size-xl;
+    }
 
-  .main {
-    padding: 1rem 0.5rem;
-  }
+    .main {
+        padding: $spacing-xl $spacing-sm;
+    }
 }
 
-@media (min-width: 1280px) {
-  .main {
-    padding: 3rem;
-  }
+@media (min-width: $breakpoint-desktop) {
+    .main {
+        padding: $spacing-4xl;
+    }
 }
