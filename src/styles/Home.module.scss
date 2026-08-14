@@ -1,0 +1,44 @@
+@use './variables' as *;
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: $background;
+}
+
+.logo {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $accent;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  .main {
+    padding: 1rem 0.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .main {
+    padding: 3rem;
+  }
+}
