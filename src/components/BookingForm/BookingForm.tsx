@@ -14,6 +14,7 @@ import {
 } from '../../utils/validation';
 import { InputField } from './InputField';
 import styles from './BookingForm.module.scss';
+import { getTodayDate } from '../../utils/date';
 
 interface BookingFormProps {
   onSubmit: (data: BookingFormData) => void;
@@ -23,7 +24,7 @@ interface BookingFormProps {
 const initialFormData: BookingFormData = {
   name: '',
   phone: '',
-  date: '',
+  date: getTodayDate(),
   time: '',
   guests: 1,
 };
@@ -112,9 +113,9 @@ export const BookingForm: FC<BookingFormProps> = ({ onSubmit, status }) => {
     setErrors((prev) => ({ ...prev, [name]: error || undefined }));
   };
 
-  const hasErrors = Object.values(errors).some((error) => error !== undefined);
+   const hasErrors = Object.values(errors).some((error) => error !== undefined);
 
-  const isFormValid =
+   const isFormValid = 
     formData.name.trim() !== '' &&
     formData.phone.trim() !== '' &&
     formData.date !== '' &&
