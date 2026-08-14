@@ -1,40 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Бронирование столика
 
-## Getting Started
+Тестовое задание Trainee Frontend Developer / React · Next.js
 
-First, run the development server:
+## Деплой
+
+[Ссылка на Vercel](https://online-booking-one-amber.vercel.app/)
+
+## Стек
+
+- Next.js 14+ (Pages Router)
+- TypeScript
+- SCSS (CSS Modules)
+- React 18+
+
+## Установка и запуск
 
 ```bash
+# Склонируйте репозиторий
+git clone https://github.com/ваш-логин/saveur-booking.git
+cd saveur-booking
+
+# Установите зависимости
+npm install
+
+# Запустите в режиме разработки
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откройте http://localhost:3000 в браузере.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Принятые решения
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+1. Реализовала отдельный переиспользуемый компонент `InputField` для упрощения создания и поддержки формы.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+2. Реализовала валидацию при `onBlur` и при отправке.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Использовала медиа-запросы для мобильных устройств (375px) и десктопа (1280px).
 
-## Learn More
+4. Типы вынесла в отдельный файл (`types/booking.ts`)  для чистоты кода.
 
-To learn more about Next.js, take a look at the following resources:
+5. Вынесла в отдельный файл (`styles/_variables.scss`) все повторяющиеся значения: цвета, размеры шрифтов, отступы, скругления и брейкпоинты.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## Что можно улучшить
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Написать unit-тесты для валидации.
 
-## Deploy on Vercel
+2. Сохранять данные в localStorage, чтобы не терять их при обновлении страницы.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Использовать кастомный календарь с запретом на выбор прошлых дат.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+4. Использовать маску для ввода телефона.
