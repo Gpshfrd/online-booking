@@ -112,6 +112,17 @@ export const BookingForm: FC<BookingFormProps> = ({ onSubmit, status }) => {
     setErrors((prev) => ({ ...prev, [name]: error || undefined }));
   };
 
+  const hasErrors = Object.values(errors).some((error) => error !== undefined);
+
+  const isFormValid =
+    formData.name.trim() !== '' &&
+    formData.phone.trim() !== '' &&
+    formData.date !== '' &&
+    formData.time !== '' &&
+    formData.guests >= 1 &&
+    formData.guests <= 12 &&
+    !hasErrors;
+
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <h2 className={styles.title}>Бронирование столика</h2>
@@ -180,7 +191,7 @@ export const BookingForm: FC<BookingFormProps> = ({ onSubmit, status }) => {
       <button
         type="submit"
         className={styles.submitButton}
-        disabled={status === 'loading'}
+        disabled={status === 'loading' || !isFormValid}
       >
         {status === 'loading' ? 'Бронирую...' : 'Забронировать'}
       </button>
