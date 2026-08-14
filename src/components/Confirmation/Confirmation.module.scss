@@ -1,0 +1,94 @@
+@use '../../styles/variables' as *;
+
+.confirmation {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    background: $background;
+    border-radius: 12px;
+    text-align: center;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $primary;
+    margin-bottom: 0.5rem;
+}
+
+.details {
+    text-align: left;
+    background: $background;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.detailRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+}
+
+.detailLabel {
+    color: $accent;
+    font-weight: 500;
+}
+
+.detailValue {
+    color: $primary;
+    font-weight: 500;
+}
+
+.resetButton {
+    width: 100%;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $primary;
+    background: $background;
+    border: 1px solid $primary;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: system-ui, -apple-system, sans-serif;
+
+    &:hover {
+        color: $background;
+        background: $accent;
+        border: none;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .confirmation {
+        padding: 1.5rem 1.25rem;
+        margin: 0 0.75rem;
+    }
+
+    .title {
+        font-size: 1.25rem;
+    }
+
+    .details {
+        padding: 0.75rem;
+    }
+
+    .detailRow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+}
