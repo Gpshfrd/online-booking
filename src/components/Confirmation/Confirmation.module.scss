@@ -2,7 +2,6 @@
 
 .confirmation {
     max-width: $container-max-width;
-    margin: 0 auto;
     padding: $spacing-3xl $spacing-4xl;
     background: $background;
     text-align: center;
@@ -51,12 +50,6 @@
     cursor: pointer;
     transition: background 0.2s;
     font-family: $font-family-base;
-
-    &:hover {
-        color: $background;
-        background: $accent;
-        border: none;
-    }
 }
 
 @keyframes fadeIn {
@@ -73,7 +66,6 @@
 @media (max-width: $breakpoint-mobile) {
     .confirmation {
         padding: $spacing-3xl $spacing-2xl;
-        margin: 0 $spacing-xl;
     }
 
     .title {
