@@ -1,80 +1,80 @@
 @use '../../styles/variables' as *;
 
 .confirmation {
-    max-width: $container-max-width;
-    padding: $spacing-3xl $spacing-4xl;
-    background: $background;
-    text-align: center;
-    animation: fadeIn 0.4s ease-out;
+  max-width: $container-max-width;
+  padding: $spacing-3xl $spacing-4xl;
+  background: $background;
+  text-align: center;
+  animation: fadeIn 0.4s ease-out;
 }
 
 .title {
-    font-size: $font-size-xl;
-    font-weight: $font-weight-semibold;
-    color: $primary;
-    margin-bottom: $spacing-md;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $primary;
+  margin-bottom: $spacing-md;
 }
 
 .details {
-    text-align: left;
-    background: $background;
-    border-radius: $radius-sm;
-    margin-bottom: $spacing-3xl;
+  text-align: left;
+  background: $background;
+  border-radius: $radius-sm;
+  margin-bottom: $spacing-3xl;
 }
 
 .detailRow {
-    display: flex;
-    justify-content: space-between;
-    padding: $spacing-sm 0;
+  display: flex;
+  justify-content: space-between;
+  padding: $spacing-sm 0;
 }
 
 .detailLabel {
-    color: $accent;
-    font-weight: $font-weight-medium;
+  color: $accent;
+  font-weight: $font-weight-medium;
 }
 
 .detailValue {
-    color: $primary;
-    font-weight: $font-weight-medium;
+  color: $primary;
+  font-weight: $font-weight-medium;
 }
 
 .resetButton {
-    width: 100%;
-    padding: $spacing-lg $spacing-4xl;
-    font-size: $font-size-base;
-    font-weight: $font-weight-semibold;
-    color: $primary;
-    background: $background;
-    border: 1px solid $primary;
-    border-radius: $radius-sm;
-    cursor: pointer;
-    transition: background 0.2s;
-    font-family: $font-family-base;
+  width: 100%;
+  padding: $spacing-lg $spacing-4xl;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $primary;
+  background: $background;
+  border: 1px solid $primary;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: $font-family-base;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: $breakpoint-mobile) {
-    .confirmation {
-        padding: $spacing-3xl $spacing-2xl;
-    }
+  .confirmation {
+    padding: $spacing-3xl $spacing-2xl;
+  }
 
-    .title {
-        font-size: $font-size-xl;
-    }
+  .title {
+    font-size: $font-size-xl;
+  }
 
-    .detailRow {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: $spacing-sm;
-    }
+  .detailRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-sm;
+  }
 }

@@ -1,122 +1,126 @@
 @use '../../styles/variables' as *;
 
 .form {
-    background: $background;
-    padding: $spacing-4xl;
-    width: 100%;
-    max-width: $container-max-width;
-    box-sizing: border-box;
+  background: $background;
+  padding: $spacing-4xl;
+  width: 100%;
+  max-width: $container-max-width;
+  box-sizing: border-box;
 }
 
 .title {
-    font-size: $font-size-2xl;
-    font-weight: $font-weight-semibold;
-    color: $primary;
-    text-align: center;
-    margin-bottom: $spacing-4xl;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  color: $primary;
+  text-align: center;
+  margin-bottom: $spacing-4xl;
 }
 
 .fields {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-2xl;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xl;
 }
 
 .fieldGroup {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-sm;
-    width: 100%;
-    max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  width: 100%;
+  max-width: 100%;
 }
 
 .submitButton {
-    width: 100%;
-    padding: $spacing-lg;
-    font-size: $font-size-base;
-    font-weight: $font-weight-semibold;
-    color: $background;
+  width: 100%;
+  padding: $spacing-lg;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $background;
+  background: $accent;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    opacity 0.2s;
+  font-family: $font-family-base;
+  margin-top: $spacing-3xl;
+
+  &:hover:not(:disabled) {
     background: $accent;
-    border: none;
-    border-radius: $radius-sm;
-    cursor: pointer;
-    transition: background 0.2s, opacity 0.2s;
-    font-family: $font-family-base;
-    margin-top: $spacing-3xl;
+  }
 
-    &:hover:not(:disabled) {
-        background: $accent;
-    }
-
-    &:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
 .label {
-    display: block;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-medium;
-    color: $primary;
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $primary;
 }
 
 .required {
-    color: $error;
-    margin-left: 2px;
+  color: $error;
+  margin-left: 2px;
 }
 
 .input {
-    width: 100%;
-    max-width: 100%;
-    padding: $spacing-md $spacing-base;
-    font-size: $font-size-base;
-    border: 1px solid $light;
-    border-radius: $radius-sm;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    background: $background;
-    color: $primary;
-    box-sizing: border-box;
-    cursor: text;
+  width: 100%;
+  max-width: 100%;
+  padding: $spacing-md $spacing-base;
+  font-size: $font-size-base;
+  border: 1px solid $light;
+  border-radius: $radius-sm;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  background: $background;
+  color: $primary;
+  box-sizing: border-box;
+  cursor: text;
 
-    &:focus {
-        outline: none;
-        border-color: $accent;
-    }
+  &:focus {
+    outline: none;
+    border-color: $accent;
+  }
 
-    &.inputError {
-        border-color: $error;
-    }
+  &.inputError {
+    border-color: $error;
+  }
 
-    &[type="date"] {
-        min-height: 44px;
-        font-family: Arial, Helvetica, sans-serif;
-    }
+  &[type='date'] {
+    min-height: 44px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
 
-    &:is(select) {
-        appearance: none;
-        cursor: pointer;
-    }
+  &:is(select) {
+    appearance: none;
+    cursor: pointer;
+  }
 }
 
 .errorText {
-    display: block;
-    color: $error;
-    font-size: $font-size-xs;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
-    width: 100%;
-    max-width: 100%;
-    line-height: 1.4;
+  display: block;
+  color: $error;
+  font-size: $font-size-xs;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  width: 100%;
+  max-width: 100%;
+  line-height: 1.4;
 }
 
 @media (max-width: $breakpoint-mobile) {
-    .form {
-        padding: $spacing-2xl;
-    }
+  .form {
+    padding: $spacing-2xl;
+  }
 
-    .title {
-        font-size: $font-size-xl;
-    }
+  .title {
+    font-size: $font-size-xl;
+  }
 }

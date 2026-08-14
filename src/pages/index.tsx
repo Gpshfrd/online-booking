@@ -10,7 +10,7 @@ export default function Home() {
 
   const handleSubmit = (data: BookingFormData) => {
     setStatus('loading');
-    
+
     setTimeout(() => {
       setBookingData(data);
       setStatus('success');

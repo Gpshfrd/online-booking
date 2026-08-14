@@ -1,169 +1,189 @@
-import { BookingFormData, BookingStatus, FormErrors, TIME_SLOTS } from "@/src/types/booking";
-import { FC, useState } from "react";
-import { 
-  validateName, 
-  validatePhone, 
-  validateDate, 
-  validateTime, 
-  validateGuests 
+import {
+  BookingFormData,
+  BookingStatus,
+  FormErrors,
+  TIME_SLOTS,
+} from '@/src/types/booking';
+import React, { FC, useState } from 'react';
+import {
+  validateName,
+  validatePhone,
+  validateDate,
+  validateTime,
+  validateGuests,
 } from '../../utils/validation';
-import { InputField } from "./InputField";
+import { InputField } from './InputField';
 import styles from './BookingForm.module.scss';
 
 interface BookingFormProps {
-    onSubmit: (data: BookingFormData) => void;
-    status: BookingStatus;
+  onSubmit: (data: BookingFormData) => void;
+  status: BookingStatus;
 }
 
 const initialFormData: BookingFormData = {
-    name: '',
-    phone: '',
-    date: '',
-    time: '',
-    guests: 1 
-}
+  name: '',
+  phone: '',
+  date: '',
+  time: '',
+  guests: 1,
+};
 
 export const BookingForm: FC<BookingFormProps> = ({ onSubmit, status }) => {
-    const [formData, setFormData] = useState<BookingFormData>(initialFormData);
-    const [errors, setErrors] = useState<FormErrors>({});
-    const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [formData, setFormData] = useState<BookingFormData>(initialFormData);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
-    const validateField = (name: string, value: string | number): string | null => {
-        switch (name) {
-            case 'name': return validateName(value as string);
-            case 'phone': return validatePhone(value as string);
-            case 'date': return validateDate(value as string);
-            case 'time': return validateTime(value as string);
-            case 'guests': return validateGuests(value as number);
-            default: return null;
-        }
+  const validateField = (
+    name: string,
+    value: string | number
+  ): string | null => {
+    switch (name) {
+      case 'name':
+        return validateName(value as string);
+      case 'phone':
+        return validatePhone(value as string);
+      case 'date':
+        return validateDate(value as string);
+      case 'time':
+        return validateTime(value as string);
+      case 'guests':
+        return validateGuests(value as number);
+      default:
+        return null;
     }
+  };
 
-    const validateForm = (): boolean => {
-        const newErrors: FormErrors = {};
-        let isValid = true;
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+    let isValid = true;
 
-        Object.keys(formData).forEach(key => {
-            const value = formData[key as keyof BookingFormData];
-            const error = validateField(key, value);
-            if (error) {
-                newErrors[key as keyof FormErrors] = error;
-                isValid = false;
-            }
-        });
+    Object.keys(formData).forEach((key) => {
+      const value = formData[key as keyof BookingFormData];
+      const error = validateField(key, value);
+      if (error) {
+        newErrors[key as keyof FormErrors] = error;
+        isValid = false;
+      }
+    });
 
-        setErrors(newErrors);
+    setErrors(newErrors);
 
-        const allTouched = Object.keys(formData).reduce((acc, key) => ({ ...acc, [key]: true }), {});
-        setTouched(allTouched);
+    const allTouched = Object.keys(formData).reduce(
+      (acc, key) => ({ ...acc, [key]: true }),
+      {}
+    );
+    setTouched(allTouched);
 
-        return isValid;
+    return isValid;
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (status === 'loading') return;
+
+    if (validateForm()) {
+      onSubmit(formData);
     }
+  };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    const parsedValue = name === 'guests' ? Number(value) : value;
 
-        if (status === 'loading') return;
+    setFormData((prev) => ({ ...prev, [name]: parsedValue }));
 
-        if (validateForm()) {
-            onSubmit(formData);
-        }
+    if (touched[name]) {
+      const error = validateField(name, parsedValue);
+      setErrors((prev) => ({ ...prev, [name]: error || undefined }));
     }
+  };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        const parsedValue = name === 'guests' ? Number(value) : value;
+  const handleBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name } = e.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
 
-        setFormData(prev => ({ ...prev, [name]: parsedValue }));
+    const value = formData[name as keyof BookingFormData];
+    const error = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: error || undefined }));
+  };
 
-        if (touched[name]) {
-            const error = validateField(name, parsedValue);
-            setErrors(prev => ({ ...prev, [name]: error || undefined}));
-        }
-    }
+  return (
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <h2 className={styles.title}>Бронирование столика</h2>
 
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name } = e.target;
-        setTouched(prev => ({ ...prev, [name]: true }));
+      <div className={styles.fields}>
+        <InputField
+          label="Имя гостя"
+          id="name"
+          value={formData.name}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={errors.name}
+          required
+          placeholder="Иван"
+        />
 
-        const value = formData[name as keyof BookingFormData];
-        const error = validateField(name, value);
-        setErrors(prev => ({ ...prev, [name]: error || undefined}));
-    }
+        <InputField
+          label="Телефон"
+          id="phone"
+          type="tel"
+          value={formData.phone}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={errors.phone}
+          required
+          placeholder="+7 999 999 99 99"
+        />
 
-    return (
-        <form onSubmit={handleSubmit} className={styles.form}>
-            <h2 className={styles.title}>Бронирование столика</h2>
+        <InputField
+          label="Дата"
+          id="date"
+          type="date"
+          value={formData.date}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={errors.date}
+          required
+        />
 
-            <div className={styles.fields}>
-                <InputField
-                    label="Имя гостя"
-                    id="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={errors.name}
-                    required
-                    placeholder="Иван"
-                />
+        <InputField
+          label="Время"
+          id="time"
+          type="select"
+          value={formData.time}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={errors.time}
+          required
+          options={TIME_SLOTS as unknown as string[]}
+        />
 
-                <InputField
-                    label="Телефон"
-                    id="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={errors.phone}
-                    required
-                    placeholder="+7 999 999 99 99"
-                />
+        <InputField
+          label="Количество гостей"
+          id="guests"
+          type="number"
+          value={formData.guests}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={errors.guests}
+          required
+          min={1}
+          max={12}
+        />
+      </div>
 
-                <InputField
-                    label="Дата"
-                    id="date"
-                    type="date"
-                    value={formData.date}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={errors.date}
-                    required
-                />
-
-                <InputField
-                    label="Время"
-                    id="time"
-                    type="select"
-                    value={formData.time}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={errors.time}
-                    required
-                    options={TIME_SLOTS as unknown as string[]}
-                />
-
-                <InputField
-                    label="Количество гостей"
-                    id="guests"
-                    type="number"
-                    value={formData.guests}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={errors.guests}
-                    required
-                    min={1}
-                    max={12}
-                />
-
-            </div>
-
-            <button
-                type="submit"
-                className={styles.submitButton}
-                disabled={status === 'loading'}
-            >
-                {status === 'loading' ? "Бронирую..." : "Забронировать"}
-            </button>
-        </form>
-    )
-}
+      <button
+        type="submit"
+        className={styles.submitButton}
+        disabled={status === 'loading'}
+      >
+        {status === 'loading' ? 'Бронирую...' : 'Забронировать'}
+      </button>
+    </form>
+  );
+};
