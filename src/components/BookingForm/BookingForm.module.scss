@@ -1,0 +1,124 @@
+@use '../../styles/variables' as *;
+
+.form {
+    margin: 0 auto;
+    background: $background;
+    padding: 2rem;
+    width: 100%;
+    max-width: 480px;
+    box-sizing: border-box;
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: $primary;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem
+}
+
+.fieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    width: 100%;
+    max-width: 100%; 
+}
+
+.submitButton {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $background;
+    background: $accent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, opacity 0.2s;
+    font-family: system-ui, -apple-system, sans-serif;
+    margin-top: 1.5rem;
+
+    &:hover:not(:disabled) {
+        background: $accent;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+.label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $primary;
+}
+
+.required {
+    color: $error;
+    margin-left: 2px;
+}
+
+.input {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.625rem 0.875rem;
+    font-size: 1rem;
+    border: 1px solid $light;
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: $background;
+    color: $primary;
+    box-sizing: border-box;
+    cursor: text;
+
+    &:focus {
+        outline: none;
+        border-color: $accent;
+    }
+
+    &.inputError {
+        border-color: $error;
+    }
+
+    &[type="date"] {
+        min-height: 44px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    &:is(select) {
+        appearance: none;
+        cursor: pointer;
+    }
+}
+
+.errorText {
+    display: block;
+    color: $error;
+    font-size: 0.813rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+    .form {
+        padding: 1.25rem;
+        margin: 0 0.75rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+}
